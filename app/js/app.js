@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	gsap.to('.card-number-holder', { opacity: 1, zoom: 1, duration: .1, delay: .25 } );
 
 	const cursor = document.getElementById('cursor'),
-				follower = document.getElementById('aura');
-				/*links = document.getElementById('a');*/
+				follower = document.getElementById('aura'),
+				links = document.getElementsByTagName('a');
 			
 	mouseX = 0, mouseY = 0, posX = 0, posY = 0;
 
@@ -80,7 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
-	
+	for (let i = 0; i < links.length; i++) {
+		links[i].addEventListener('mouseover', () => {
+			cursor.classList.add('active');
+			follower.classList.add('active');
+		});
+
+		links[i].addEventListener('mouseout', () => {
+			cursor.classList.remove('active');
+			follower.classList.remove('active');
+		});
+	}
 	body.addEventListener('mouseout', () => {
 		cursor.classList.add('hidden');
 		follower.classList.add('hidden');	
